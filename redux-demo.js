@@ -1,9 +1,16 @@
 const redux = require("redux");
 
-const counterReducer = () => {};
+const counterReducer = (state, action) => {
+  return {
+    counter: state.counter + 1,
+  };
+};
 
 const store = redux.createStore(counterReducer);
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+const counterSubscriber = () => {
+  const latestState = store.getState();
+  console.log(latestState);
+};
+
+store.subscribe(counterSubscriber);
