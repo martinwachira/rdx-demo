@@ -1,6 +1,6 @@
 const redux = require("redux");
 
-const counterReducer = (state, action) => {
+const counterReducer = (state = { counter: 0 }, action) => {
   return {
     counter: state.counter + 1,
   };
