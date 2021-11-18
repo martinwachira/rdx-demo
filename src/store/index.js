@@ -1,5 +1,6 @@
 import { createStore } from "redux";
 
+//created the reducer counter
 const counterReducer = (state = { counter: 0 }, action) => {
   if (action.type === "INC") {
     return {
@@ -13,6 +14,7 @@ const counterReducer = (state = { counter: 0 }, action) => {
   }
 };
 
+//create a store for the counterReducer
 const store = createStore(counterReducer);
 
 export default store;
