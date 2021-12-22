@@ -1,11 +1,11 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initState = { counter: 0, showCounter: true };
+const initialState = { counter: 0, showCounter: true };
 
 // use redux toolkit createSlice method to simplify the code
 const counterSlice = createSlice({
   name: "counter",
-  initState,
+  initialState,
   reducers: {
     inc: (state) => {
       state.counter++;

@@ -13,7 +13,7 @@ const Counter = () => {
   };
 
   const incByHandler = () => {
-    dispatch(counterActions.increase());
+    dispatch(counterActions.increase(5));
   };
 
   const decrementHandler = () => {
