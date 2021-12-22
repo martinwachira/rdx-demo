@@ -1,18 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createStore } from "redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const initState = { counter: 0, showCounter: true };
 
 // use redux toolkit createSlice method to simplify the code
-createSlice({
+const counterSlice = createSlice({
   name: "counter",
   initState,
   reducers: {
     inc: (state) => {
-      state.counter = +1;
+      state.counter++;
     },
     dec: (state) => {
-      state.counter = -1;
+      state.counter--;
     },
     increase: (state, action) => {
       state.counter = state.counter + action.value;
@@ -23,35 +22,10 @@ createSlice({
   },
 });
 
-//created the reducer counter
-const counterReducer = (state = initState, action) => {
-  if (action.type === "INC") {
-    return {
-      counter: state.counter + 1,
-      showCounter: state.showCounter,
-    };
-  }
-  if (action.type === "INCBY") {
-    return {
-      counter: state.counter + action.value,
-      showCounter: state.showCounter,
-    };
-  }
-  if (action.type === "DEC") {
-    return {
-      counter: state.counter - 1,
-      showCounter: state.showCounter,
-    };
-  }
-  if (action.type === "TOGGLE") {
-    return {
-      showCounter: !state.showCounter,
-      counter: state.counter,
-    };
-  }
-};
-
 //create a store for the counterReducer
-const store = createStore(counterReducer);
+const store = configureStore({
+  reducer: counterSlice.reducer,
+});
 
+export const counterActions = counterSlice.actions;
 export default store;
