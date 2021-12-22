@@ -13,14 +13,14 @@ const Counter = () => {
   };
 
   const incByHandler = () => {
-    dispatch({ type: "INCBY", value: 5 });
+    dispatch(counterActions.increase());
   };
 
   const decrementHandler = () => {
-    dispatch({ type: "DEC" });
+    dispatch(counterActions.dec());
   };
   const toggleCounterHandler = () => {
-    dispatch({ type: "TOGGLE" });
+    dispatch(counterActions.toggle());
   };
 
   console.log("counterActions", counterActions);
