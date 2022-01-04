@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./Counter.module.css";
-import { counterActions } from "../store";
+import { counterActions } from "../store/counter";
 
 const Counter = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const Counter = () => {
     dispatch(counterActions.toggle());
   };
 
-  console.log("counterActions", counterActions);
+  // console.log("counterActions", counterActions);
 
   return (
     <main className={classes.counter}>
