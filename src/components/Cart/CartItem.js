@@ -10,6 +10,11 @@ const CartItem = (props) => {
     console.log("added one item");
   };
 
+  const removeItemHandler = () => {
+    dispatch(cartActions.removeItem());
+    console.log("removed one item");
+  };
+
   const { title, quantity, total, price } = props.item;
 
   return (
@@ -26,7 +31,7 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
+          <button onClick={removeItemHandler}>-</button>
           <button onClick={addItemHandler}>+</button>
         </div>
       </div>
