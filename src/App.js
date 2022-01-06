@@ -7,6 +7,17 @@ import { useSelector } from "react-redux";
 function App() {
   const showCart = useSelector((state) => state.cartUI.showCart);
   const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    fetch("https://react-redefined-default-rtdb.firebaseio.com/cart.json", {
+      method: "PUT",
+      body: JSON.stringify(cart),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }, [cart]);
+
   return (
     <Layout>
       {showCart && <Cart />}
