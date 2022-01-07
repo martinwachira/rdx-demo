@@ -8,6 +8,7 @@ import React from "react";
 import { cartUIActions } from "./store/cart-ui";
 import { useEffect } from "react";
 
+let isInit = true;
 function App() {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cartUI.showCart);
@@ -44,6 +45,12 @@ function App() {
         })
       );
     };
+
+    if (isInit) {
+      isInit = false;
+      return;
+    }
+
     sendCartData().catch((error) => {
       dispatch(
         cartUIActions.setNotification({
