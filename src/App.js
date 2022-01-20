@@ -5,7 +5,7 @@ import Layout from "./components/Layout/Layout";
 import Notification from "./components/UI/Notification";
 import Products from "./components/Shop/Products";
 import React from "react";
-import { cartUIActions } from "./store/cart-ui";
+import { sendCartData } from "./store/cart";
 import { useEffect } from "react";
 
 let isInit = true;
@@ -16,50 +16,11 @@ function App() {
   const notif = useSelector((state) => state.cartUI.notification);
 
   useEffect(() => {
-    const sendCartData = async () => {
-      dispatch(
-        cartUIActions.setNotification({
-          status: "pending",
-          message: "Sending data to server...",
-          title: "Cart data",
-        })
-      );
-      const response = await fetch(
-        "https://react-redefined-default-rtdb.firebaseio.com/cart.json",
-        {
-          method: "PUT",
-          body: JSON.stringify(cart),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-      dispatch(
-        cartUIActions.setNotification({
-          status: "success",
-          message: "Data sent to server",
-          title: "Cart data",
-        })
-      );
-    };
-
     if (isInit) {
       isInit = false;
       return;
     }
-
-    sendCartData().catch((error) => {
-      dispatch(
-        cartUIActions.setNotification({
-          status: "error",
-          message: "Error sending data to server...",
-          title: "Cart data",
-        })
-      );
-    });
+    dispatch(sendCartData(cart));
   }, [cart, dispatch]);
 
   return (
