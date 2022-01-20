@@ -1,4 +1,3 @@
-import { cartUIActions } from "./cart-ui";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialCartState = {
@@ -27,6 +26,10 @@ const cartSlice = createSlice({
         existingItem.totalPrice = existingItem.totalPrice += newItem.price;
       }
     },
+    replaceItem: (state, action) => {
+      state.quantity = action.payload.quantity;
+      state.items = action.payload.items;
+    },
     removeItem: (state, action) => {
       const id = action.payload;
       const existingItem = state.items.find((item) => item.id === id);
@@ -40,54 +43,6 @@ const cartSlice = createSlice({
     },
   },
 });
-
-export const sendCartData = (cart) => {
-  return async (dispatch) => {
-    console.log("pending");
-    dispatch(
-      cartUIActions.setNotification({
-        status: "pending",
-        message: "Sending data to server...",
-        title: "Cart data",
-      })
-    );
-    const sendRequest = async () => {
-      const response = await fetch(
-        "https://react-redefined-default-rtdb.firebaseio.com/cart.json",
-        {
-          method: "PUT",
-          body: JSON.stringify(cart),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Something went wrong!");
-      }
-    };
-    try {
-      await sendRequest();
-      console.log("success");
-      dispatch(
-        cartUIActions.setNotification({
-          status: "success",
-          message: "Data sent to server",
-          title: "Cart data",
-        })
-      );
-    } catch (error) {
-      console.log("error");
-      dispatch(
-        cartUIActions.setNotification({
-          status: "error",
-          message: "Error sending data to server...",
-          title: "Cart data",
-        })
-      );
-    }
-  };
-};
 
 export const cartActions = cartSlice.actions;
 export default cartSlice.reducer;
