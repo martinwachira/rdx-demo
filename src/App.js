@@ -9,6 +9,7 @@ import React from "react";
 import { useEffect } from "react";
 
 let isInit = true;
+
 function App() {
   const dispatch = useDispatch();
   const showCart = useSelector((state) => state.cartUI.showCart);
