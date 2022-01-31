@@ -78,6 +78,7 @@ const lengthOfLongestSubstring = (s) => {
 /**
     Implementation of Null Object Pattern
 */
+
 class User {
   constructor(id, name, role) {
     this.id = id;
@@ -92,8 +93,8 @@ class User {
 
 class NullUser {
   constructor() {
-    this.id = -1;
-    this.name = "Guest";
+    this.id = 99;
+    this.name = "Anonymous";
     this.role = null;
   }
 
@@ -102,7 +103,12 @@ class NullUser {
   }
 }
 
-const users = [new User(1, "Admin", 1), new User(2, "Sara", 2)];
+const users = [
+  new User(1, "Zoey", 1),
+  new User(2, "Jane", 2),
+  new User(3, "Jack", 2),
+  new User(4, "Doe", 1),
+];
 
 const getUser = (id) => {
   const user = users.find((user) => user.id === id);
@@ -113,19 +119,23 @@ const getUser = (id) => {
   }
 };
 
-// print user
 const printUser = (id) => {
   const user = getUser(id);
-  console.log(`User: ${user.name}, ${user.role}`);
+  console.log(
+    `User: ${user.name}, Role ${user.role === 1 ? "Admin" : "Guest"}`
+  );
   if (user.role === 1) {
     console.log("Access Granted");
   } else if (user.role === 2) {
-    console.log("Access partially granted");
-  } else if (user.role === null) {
+    console.log("Partial Access");
+  } else {
     console.log("Access Denied");
   }
 };
 
 printUser(1);
 printUser(2);
+printUser(3);
+printUser(4);
+printUser(5);
 printUser(99);
