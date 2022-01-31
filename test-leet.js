@@ -139,3 +139,49 @@ printUser(3);
 printUser(4);
 printUser(5);
 printUser(99);
+
+/**
+ * Implementation of Builder Pattern
+ */
+
+class Address {
+  constructor(zip, street) {
+    this.zip = zip;
+    this.street = street;
+  }
+}
+
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+class PersonBuilder {
+  constructor(name) {
+    this.person = new Person(name);
+  }
+  setAge(age) {
+    this.person.age = age;
+    return this;
+  }
+  setPhone(phone) {
+    this.person.phone = phone;
+    return this;
+  }
+  setAddress(address) {
+    this.address = address;
+    return this;
+  }
+  builder() {
+    return this.person;
+  }
+}
+
+const person = new PersonBuilder("Wcr")
+  .setAge(27)
+  .setPhone("254232329862")
+  .setAddress()
+  .builder();
+
+console.log(person);
