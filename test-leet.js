@@ -170,7 +170,7 @@ class PersonBuilder {
     return this;
   }
   setAddress(address) {
-    this.address = address;
+    this.person.address = address;
     return this;
   }
   builder() {
@@ -178,10 +178,10 @@ class PersonBuilder {
   }
 }
 
-const person = new PersonBuilder("Wcr")
+const person = new PersonBuilder("Test")
   .setAge(27)
   .setPhone("254232329862")
-  .setAddress()
+  .setAddress(new Address("00232", "Ruiru"))
   .builder();
 
 console.log(person);
