@@ -152,11 +152,24 @@ class Address {
 }
 
 class Person {
-  constructor(name) {
+  constructor(
+    name,
+    {
+      race,
+      age = 27,
+      phone = "+2547635352632",
+      address = new Address("222", "Default Address"),
+    } = {}
+  ) {
     this.name = name;
+    this.race = race;
+    this.age = age;
+    this.phone = phone;
+    this.address = address;
   }
 }
 
+/**
 class PersonBuilder {
   constructor(name) {
     this.person = new Person(name);
@@ -183,5 +196,9 @@ const person = new PersonBuilder("Test")
   .setPhone("254232329862")
   .setAddress(new Address("00232", "Ruiru"))
   .builder();
-
+*/
+const person = new Person("Martin", {
+  age: 26,
+  address: new Address("00100", "Nairobi"),
+});
 console.log(person);
