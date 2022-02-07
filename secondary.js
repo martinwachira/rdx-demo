@@ -50,12 +50,12 @@ function sockMerchant(n, ar) {
 
   for (let i = 0; i < ar.length; i++) {
     x = ar[i];
-    // counts[x] = counts[x] >= 1 ? counts[x] + 1 : 1
-    if (counts[x] >= 1) {
-      counts[x] = counts[x] + 1;
-    } else {
-      counts[x] = 1;
-    }
+    counts[x] = counts[x] >= 1 ? counts[x] + 1 : 1
+//     if (counts[x] >= 1) {
+//       counts[x] = counts[x] + 1;
+//     } else {
+//       counts[x] = 1;
+//     }
     if (counts[x] % 2 === 0) {
       newAr.push(x);
     }
